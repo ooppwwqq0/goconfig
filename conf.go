@@ -553,3 +553,8 @@ func (err getError) Error() string {
 	}
 	return "invalid get error"
 }
+
+
+func (c *ConfigFile) GetData() (map[string]map[string]string) {
+	return c.data
+}
