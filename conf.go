@@ -17,6 +17,7 @@ package goconfig
 
 import (
 	"fmt"
+	"github.com/mitchellh/mapstructure"
 	"regexp"
 	"runtime"
 	"strconv"
@@ -557,4 +558,10 @@ func (err getError) Error() string {
 
 func (c *ConfigFile) GetData() (map[string]map[string]string) {
 	return c.data
+}
+
+func (c *ConfigFile) Decode(output interface{}) {
+	if err := mapstructure.Decode(c.data, &output); err != nil {
+		fmt.Println(err)
+	}
 }
