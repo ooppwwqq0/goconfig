@@ -560,8 +560,9 @@ func (c *ConfigFile) GetData() (map[string]map[string]string) {
 	return c.data
 }
 
-func (c *ConfigFile) Decode(output interface{}) {
-	if err := mapstructure.Decode(c.data, &output); err != nil {
-		fmt.Println(err)
+func (c *ConfigFile) Decode(output interface{}) (err error) {
+	if err = mapstructure.Decode(c.data, &output); err != nil {
+		return err
 	}
+	return
 }
